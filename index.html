@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Testament Books</title>
 
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f4f4f7;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .number {
+    font-size: 24px;
+    color: #777;
+    margin-bottom: 15px;
+    min-height: 30px;
+  }
+
+  .name {
+    font-size: 48px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 45px;
+  }
+
+  .tap-area {
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .instruction {
+    font-size: 18px;
+    color: #999;
+    margin-top: 10px;
+  }
+
+  .reset-button {
+    margin-top: 35px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="tap-area" id="tapArea">
+    <div class="number" id="number"></div>
+    <div class="name" id="name">Press to Begin</div>
+    <div class="instruction" id="instruction">
+      Tap anywhere to begin
+    </div>
+  </div>
+
+  <button class="reset-button" id="resetButton">
+    Start Over
+  </button>
+
+</div>
+
+<script>
+const books = [
+  "Matthew",
+  "Mark",
+  "Luke",
+  "John",
+  "Acts",
+  "Romans",
+  "1 Corinthians",
+  "2 Corinthians",
+  "Galatians",
+  "Ephesians",
+  "Philippians",
+  "Colossians",
+  "1 Thessalonians",
+  "2 Thessalonians",
+  "1 Timothy",
+  "2 Timothy",
+  "Titus",
+  "Philemon",
+  "Hebrews",
+  "James",
+  "1 Peter",
+  "2 Peter",
+  "1 John",
+  "2 John",
+  "3 John",
+  "Jude",
+  "Revelation"
+];
+
+let current = -1;
+
+function showBook() {
+  document.getElementById("number").textContent =
+    "Book #" + (current + 1);
+
+  document.getElementById("name").textContent =
+    books[current];
+
+  document.getElementById("instruction").textContent =
+    "Tap anywhere for the next book";
+}
+
+document.getElementById("tapArea").addEventListener("click", function() {
+  current++;
+
+  if (current >= books.length) {
+    current = 0;
+  }
+
+  showBook();
+});
+
+document.getElementById("resetButton").addEventListener("click", function(event) {
+  event.stopPropagation();
+
+  current = -1;
+
+  document.getElementById("number").textContent = "";
+  document.getElementById("name").textContent = "Press to Begin";
+  document.getElementById("instruction").textContent =
+    "Tap anywhere to begin";
+});
+</script>
+
+</body>
+</html>
